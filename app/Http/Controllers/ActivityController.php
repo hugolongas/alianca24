@@ -19,7 +19,7 @@ class ActivityController extends Controller
 
     public function activities($date = '')
     {
-        $activitites = $this->ActivityService->getAll($date);
+        $activitites = $this->ActivityService->GetAllByDate($date);
         return view('activities')->with('activities', $activitites);
     }
 

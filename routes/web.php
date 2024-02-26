@@ -13,4 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', ['uses' => 'PageController@Index', 'as' => 'home']);
+
 

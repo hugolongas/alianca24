@@ -1,0 +1,56 @@
+@import "vars";
+
+#main {
+    &.activitat {
+
+        .activitat-contingut {
+            .activitat-img {
+                img {
+                    width: 450px;
+                }
+            }
+
+            .activitat-info {
+                .activitat-info-section {
+                    padding: 5px;
+                    display: inline-block;
+
+                    &:after {
+                        content: '';
+                        border-bottom: 1px solid #cfcfcf;
+                        width: 120px;
+                        display: block;
+                        margin: 0 auto;
+                    }
+
+                    &:last-child {
+                        &:after {
+                            display: none;
+                        }
+                    }
+
+                    .info-title {
+                        font-family: 'Montserrat';
+                        font-size: 16px;
+                        padding: 0px;
+                        margin: 0;
+                    }
+
+                    .info-text {
+                        color: #eb3739;
+                    }
+
+                    .info-value {
+                        color: #000;
+                    }
+                }
+
+                .activitat-comprar {
+                    .btn-comprar {
+                        background-color: #eb3739;
+                    }
+                }
+            }
+        }
+    }
+}

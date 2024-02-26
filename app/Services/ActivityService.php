@@ -22,7 +22,7 @@ class ActivityService extends Service
         $this->MediaService = $mediaService;
     }
 
-    public function GetAll($date)
+    public function GetAllByDate($date)
     {
         if ($date != '') {
             $activities = Activity::orderBy('date', 'asc')->where('date', '=', $date)->where('published', true)->get();
@@ -44,6 +44,12 @@ class ActivityService extends Service
             ->whereRaw("(MONTH(date) = $month AND YEAR(date) = $year)")
             ->where('published', true)->get();
         return $activities;
+    }
+
+    public function GetActiveCount($count=4)
+    {
+        $activities = Activity::orderBy('date', 'asc')->where('date','>=',Carbon::today())->where('published', true)->take($count)->get();
+        return $this->OkResult($activities);
     }
 
     public function Create($title, $category)

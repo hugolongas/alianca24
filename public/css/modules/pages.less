@@ -1,0 +1,44 @@
+.page {
+    text-align: center;
+
+    .page-section {
+        font-family: "Montserrat";
+        color: #191919;
+        padding-bottom: 15px;
+
+        .section-title {
+            text-align: center;
+            position: relative;
+            margin-bottom: 25px;
+
+            &:after {
+                content: "";
+                border-bottom: 1px solid red;
+                position: absolute;
+                width: 20%;
+                bottom: -5px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+        .section-content {
+            text-align: left;
+
+            p {
+                font-size: 14px;
+                margin-bottom: 15px;
+                line-height: 1.7em;
+            }
+
+            a {
+                color: #191919;
+                text-decoration: underline;
+            }
+
+            .junta {
+                font-weight: bold;
+            }
+        }
+    }
+}

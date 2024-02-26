@@ -1,0 +1,69 @@
+#main {
+    &.socis{        
+        
+        #soci-info {
+            text-align: center;
+            margin-bottom: 40px;
+
+            .soci-module-container {
+                .soci-module {
+                    display: inline-block;
+                    background: #f3f3f3;
+                    color: #747474;
+                    width: 28%;
+                    text-align: center;
+                    padding: 10px;
+                    font-family: 'Montserrat';
+                    margin: 0px 28px;
+                }
+
+                .price {
+                    font-size: 35px;
+                    color: #bd1129;
+                    font-weight: 600;
+                    margin: 0px;
+                }
+
+                .type {
+                    font-size: 20px;
+                    font-weight: 600;
+                    margin-bottom: 50px;
+                    line-height: 20px;
+                }
+
+                .soci-module-info {
+                    ul {
+                        list-style-type: none;
+                        padding: 0px;
+
+                        li {
+                            margin: 0px;
+                            position: relative;
+                            padding: 20px 0px;
+
+                            &:after {
+                                content: " ";
+                                width: 120px;
+                                margin: 0 auto;
+                                position: absolute;
+                                left: 0;
+                                right: 0;
+                                bottom: 0;
+                                background: #dee3e7;
+                                height: 1px;
+                            }
+
+                            &:last-child::after {
+                                display: none;
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+        #soci-formulari{
+            color:#000;
+        }
+    }
+}
