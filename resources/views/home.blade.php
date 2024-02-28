@@ -10,9 +10,9 @@
         <div class="row">
             <div class="activitats-list col-8">
                 <h2 class="title">Properes Activitats</h2>
-                @foreach ($activitats as $activitat)
-                    @component('components/activity-item', ['activitat' => $activitat])
-                    @endcomponent
+                @foreach ($activities as $activity)
+                {{$activity}}
+                    
                 @endforeach
             </div>
             <div class="activitats-calendar  col-4">
@@ -21,7 +21,7 @@
             </div>
         </div>
         <div class="activitat-explora col-12">
-            <a href="{{ route('activitats') }}" class="ali-btn">+ ACTIVITATS</a>
+            <a href="{{ route('activities') }}" class="ali-btn">+ ACTIVITATS</a>
         </div>
         </div>
     </section>

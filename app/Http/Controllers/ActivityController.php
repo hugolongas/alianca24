@@ -17,12 +17,6 @@ class ActivityController extends Controller
         $this->ActivityService = $activityService;
     }
 
-    public function activities($date = '')
-    {
-        $activitites = $this->ActivityService->GetAllByDate($date);
-        return view('activities')->with('activities', $activitites);
-    }
-
     public function calendarActivities($year, $month)
     {
         $activitites = $this->ActivityService->ByDate($year, $month);
@@ -51,6 +45,17 @@ class ActivityController extends Controller
     {
         $activity = $this->ActivityService->GetById($id);
         return response()->json($activity, 200);
+    }
+
+
+    public function GetByUr($slug)
+    {
+        $activity = $this->ActivityService->GetByUrl($slug);
+
+        if ($activity != null)
+            return view('activitat')->with('activitat', $activity[0]);
+        else
+            return response()->view('errors.404', [], 404);
     }
 
     public function AddAttachment(Request $request)

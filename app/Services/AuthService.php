@@ -25,7 +25,7 @@ class AuthService extends Service
         $user->save();
     }
 
-    public function login($email, $password)
+    public function login($email, $password, $remember)
     {
         $credentials = ['email' => $email, 'password' => $password];
 
@@ -34,8 +34,6 @@ class AuthService extends Service
         }
         $user =  auth()->user();
         if($user->email_verified_at==null) return $this->FailResponse("Usuari no verificat");
-        $user->team;
-        $user->ship;
         $result =
             [
                 'user' => $user,

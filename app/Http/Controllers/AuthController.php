@@ -56,7 +56,8 @@ class AuthController extends Controller
 
         $email = $request->input('email');
         $password = $request->input('password');
-        $resp = $this->AuthService->login($email, $password);
+        $remember = $request->input('remember');
+        $resp = $this->AuthService->login($email, $password, $remember);
         if (!$resp['result']) {
             $mess = $resp['data'];
             return $this->respond($resp);

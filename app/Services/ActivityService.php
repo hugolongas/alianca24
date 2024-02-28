@@ -38,6 +38,11 @@ class ActivityService extends Service
         return $this->OkResult($activity);
     }
 
+    public function GetByUrl($url){
+        $activity = Activity::firstOrFail()->where('url', $url)->get();
+        return $this->OkResult($activity);
+    }
+
     public function ByDate($year, $month)
     {
         $activities = Activity::orderBy('date', 'asc')

@@ -54,7 +54,7 @@
         _GetActivities = function(year, month) {
             return new Promise(function(resolve, reject) {
                 var xhttp = new XMLHttpRequest();
-                var url = "{{ route('activitats.calendar', [':year', ':month']) }}";
+                var url = "{{ route('activities.calendar', [':year', ':month']) }}";
                 url = url.replace(':year', year).replace(':month', month);
                 xhttp.open("GET", url, true);
                 xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');

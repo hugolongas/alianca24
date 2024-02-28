@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\ActivityService;
 
-class HomeController extends Controller
+class PageController extends Controller
 {
     protected $ActivityService;
 
@@ -19,20 +19,30 @@ class HomeController extends Controller
         $activities = $this->ActivityService->GetActiveCount();
         return view('home')->with('activities',$activities);
     }
-    public function ateneu()
+    
+    public function activities($date = '')
     {
-        return view('ateneu');
+        $activitites = $this->ActivityService->GetAllByDate($date);
+        return view('activities')->with('activities', $activitites);
     }
+
+
     public function socis()
     {
         return view('socis');
     }
 
-    public function serveis(){
+    public function services(){
         return view('serveis');
     }
 
-    public function contacte(){
+    public function contact(){
         return view('contact');
+    }
+
+    public function page()
+    {
+        $param = request()->segment(count(request()->segments()));        
+        return view("pages.".$param)->with('page',$param);
     }
 }
