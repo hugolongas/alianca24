@@ -4,6 +4,7 @@ use App\Http\Controllers\ActivityController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CacheController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,5 +32,9 @@ Route::middleware('jwt.auth')->group(function () {
     Route::get('activitats/detall/{$id}',[ActivityController::class,'get']);
     Route::put('activitats/detall/update',[ActivityController::class,'update']);
 
+    Route::get('categories',[CategoryController::class,'index']);
+    Route::post('categories/crear',[CategoryController::class,'create']);
+    Route::get('categories/detall',[CategoryController::class,'get']);    
+    Route::put('categories/detall/update',[ActivityController::class,'update']);
     
 });

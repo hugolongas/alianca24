@@ -17,6 +17,12 @@ class ActivityController extends Controller
         $this->ActivityService = $activityService;
     }
 
+    public function All(){
+
+    }
+
+    
+
     public function calendarActivities($year, $month)
     {
         $activitites = $this->ActivityService->ByDate($year, $month);
@@ -48,7 +54,7 @@ class ActivityController extends Controller
     }
 
 
-    public function GetByUr($slug)
+    public function GetByUrl($slug)
     {
         $activity = $this->ActivityService->GetByUrl($slug);
 
