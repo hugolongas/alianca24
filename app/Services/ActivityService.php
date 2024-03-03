@@ -22,6 +22,11 @@ class ActivityService extends Service
         $this->MediaService = $mediaService;
     }
 
+    public function GetAll(){
+        $activities = Activity::orderBy('date', 'desc')->get();
+        return $this->OkResult($activities);
+    }
+
     public function GetAllByDate($date)
     {
         if ($date != '') {

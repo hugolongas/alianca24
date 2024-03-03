@@ -21,13 +21,7 @@ class CategoryController extends Controller
     public function All()
     {
         $categories = $this->CategoryService->All();
-        return $categories;
-    }
-
-    public function GetById($id)
-    {
-        $category = $this->CategoryService->GetById($id);
-        return $category;
+        return response()->json($categories, 200);;
     }
 
     public function Create(Request $request)
@@ -73,6 +67,11 @@ class CategoryController extends Controller
         $name = $request->name;
 
         $result = $this->CategoryService->Update1($id, $name);
+        return response()->json($result, 200);
+    }
+
+    public function Delete($roleId){
+        $result = $this->CategoryService->Delete($roleId);
         return response()->json($result, 200);
     }
 }

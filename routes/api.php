@@ -27,14 +27,15 @@ Route::middleware('jwt.auth')->group(function () {
     Route::post('refresh', [AuthController::class, 'refresh']);
     Route::get('user',[AuthController::class,'user']);
 
-    Route::get('activitats',[ActivityController::class,'index']);
-    Route::post('activitats/crear',[ActivityController::class,'create']);
-    Route::get('activitats/detall/{$id}',[ActivityController::class,'get']);
-    Route::put('activitats/detall/update',[ActivityController::class,'update']);
+    Route::get('activity/all',[ActivityController::class,'all']);
+    Route::post('activity/create',[ActivityController::class,'create']);
+    Route::get('activity/get/{id}',[ActivityController::class,'get']);    
+    Route::get('activity/media/{id}',[ActivityController::class,'get']);   
+    Route::put('activity/update',[ActivityController::class,'update']);
 
-    Route::get('categories',[CategoryController::class,'index']);
-    Route::post('categories/crear',[CategoryController::class,'create']);
-    Route::get('categories/detall',[CategoryController::class,'get']);    
-    Route::put('categories/detall/update',[ActivityController::class,'update']);
+    Route::get('category/all',[CategoryController::class,'all']);
+    Route::post('category/create',[CategoryController::class,'create']);
+    Route::get('category/get/{id}',[CategoryController::class,'get']);    
+    Route::put('category/update',[ActivityController::class,'update']);
     
 });

@@ -54,6 +54,7 @@ class CategoryService extends Service
     {
         $category = Category::find($id);
         $category->delete();
+        return $this->OkResult(true);
     }
 
     /*Private Functions*/

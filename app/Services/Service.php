@@ -6,16 +6,16 @@ class Service
 {
     public function OkResult($data){
         $response = [
-            'result' => true,
-            'data' => $data
+            'success' => true,
+            'result' => $data
         ];
         return $response;
     }
 
     public function FailResponse($mess){
         $response = [
-            'result' => false,
-            'data' => $mess
+            'success' => false,
+            'result' => $mess
         ];
         return $response;
     }

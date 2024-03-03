@@ -18,7 +18,8 @@ class ActivityController extends Controller
     }
 
     public function All(){
-
+        $activitites = $this->ActivityService->GetAll();
+        return $activitites;
     }
 
     
