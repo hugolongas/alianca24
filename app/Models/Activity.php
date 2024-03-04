@@ -9,15 +9,15 @@ class Activity extends Model
 
     public function slug()
 	{
-        return config('app.url').'/'.$this->category().'/'.$this->url;
+        return config('app.url').'/'.$this->category()->name.'/'.$this->url;
 	}
 
 	public function category()
 	{
-		$this->belongsTo(Category::class);
+		return $this->belongsTo(Category::class);
 	}
 
     public function attachments(){
-        $this->hasMany(Attachment::class);
+       return $this->hasMany(Attachment::class);
     }
 }

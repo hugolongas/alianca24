@@ -74,7 +74,7 @@ class ActivityService extends Service
         $activity->save();
 
 
-        $url = $this->_SeoUrl($activity->title . "_" . $activity->id);
+        $url =$this->_SeoUrl($activity->title). "_" . $activity->id;
         $activity->url = $url;
 
         $activity->save();
@@ -154,17 +154,17 @@ class ActivityService extends Service
     public function Delete($id)
     {
         $activity = Activity::find($id);
-        $attachments = $activity->attachments();
+        $attachments = $activity->attachments;
         foreach ($attachments as $attachment) {
             $this->MediaService->RemoveAttachment($attachment);
         }
         $activity->delete();
     }
 
-    public function Publish($id)
+    public function Publish($id, $status)
     {
         $activity = Activity::find($id);
-        $activity->Published = true;
+        $activity->Published = $status;
     }
 
     /*Private Functions*/
