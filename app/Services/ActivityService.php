@@ -22,7 +22,8 @@ class ActivityService extends Service
         $this->MediaService = $mediaService;
     }
 
-    public function GetAll(){
+    public function GetAll()
+    {
         $activities = Activity::orderBy('date', 'desc')->get();
         return $this->OkResult($activities);
     }
@@ -38,12 +39,14 @@ class ActivityService extends Service
         return $this->OkResult($activities);
     }
 
-    public function GetById($id){
+    public function GetById($id)
+    {
         $activity = Activity::find($id);
         return $this->OkResult($activity);
     }
 
-    public function GetByUrl($url){
+    public function GetByUrl($url)
+    {
         $activity = Activity::firstOrFail()->where('url', $url)->get();
         return $this->OkResult($activity);
     }
@@ -56,9 +59,9 @@ class ActivityService extends Service
         return $activities;
     }
 
-    public function GetActiveCount($count=4)
+    public function GetActiveCount($count = 4)
     {
-        $activities = Activity::orderBy('date', 'asc')->where('date','>=',Carbon::today())->where('published', true)->take($count)->get();
+        $activities = Activity::orderBy('date', 'asc')->where('date', '>=', Carbon::today())->where('published', true)->take($count)->get();
         return $this->OkResult($activities);
     }
 
@@ -68,8 +71,8 @@ class ActivityService extends Service
         $activity->title = $title;
         $activity->category_id = $category;
         $activity->published = false;
-
         $activity->save();
+
 
         $url = $this->_SeoUrl($activity->title . "_" . $activity->id);
         $activity->url = $url;

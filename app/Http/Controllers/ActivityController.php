@@ -113,4 +113,8 @@ class ActivityController extends Controller
         $result = $this->ActivityService->Update1($id, $title, $summary, $description, $category, $date, $time, $price, $buyUrl);
         return response()->json($result, 200);
     }
+    public function Delete($id){
+        $result = $this->ActivityService->Delete($id);
+        return response()->json($result, 200);
+    }
 }

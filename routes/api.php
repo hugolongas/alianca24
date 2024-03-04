@@ -32,10 +32,12 @@ Route::middleware('jwt.auth')->group(function () {
     Route::get('activity/get/{id}',[ActivityController::class,'get']);    
     Route::get('activity/media/{id}',[ActivityController::class,'get']);   
     Route::put('activity/update',[ActivityController::class,'update']);
+    Route::delete('activity/delete/{id}',[ActivityController::class,'delete']);
 
     Route::get('category/all',[CategoryController::class,'all']);
     Route::post('category/create',[CategoryController::class,'create']);
     Route::get('category/get/{id}',[CategoryController::class,'get']);    
-    Route::put('category/update',[ActivityController::class,'update']);
+    Route::put('category/update',[CategoryController::class,'update']);
+    Route::delete('category/delete/{id}',[CategoryController::class,'delete']);
     
 });

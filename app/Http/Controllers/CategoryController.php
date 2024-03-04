@@ -70,8 +70,8 @@ class CategoryController extends Controller
         return response()->json($result, 200);
     }
 
-    public function Delete($roleId){
-        $result = $this->CategoryService->Delete($roleId);
+    public function Delete($id){
+        $result = $this->CategoryService->Delete($id);
         return response()->json($result, 200);
     }
 }
