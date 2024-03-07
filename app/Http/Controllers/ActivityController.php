@@ -65,6 +65,11 @@ class ActivityController extends Controller
             return response()->view('errors.404', [], 404);
     }
 
+    public function GetMediasById($id){
+        $result = $this->ActivityService->GetAttachmentsById($id);
+        return response()->json($result,200);
+    }
+
     public function AddAttachment(Request $request)
     {
         $id = $request->articleId;

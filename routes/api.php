@@ -30,7 +30,7 @@ Route::middleware('jwt.auth')->group(function () {
     Route::get('activity/all',[ActivityController::class,'all']);
     Route::post('activity/create',[ActivityController::class,'create']);
     Route::get('activity/get/{id}',[ActivityController::class,'get']);    
-    Route::get('activity/media/{id}',[ActivityController::class,'get']);   
+    Route::get('activity/getMedias/{id}',[ActivityController::class,'GetMediasById']);   
     Route::post('activity/publish/{id}',[ActivityController::class,'publish']);
     Route::post('activity/unpublish/{id}',[ActivityController::class,'unpublish']);
     Route::put('activity/update',[ActivityController::class,'update']);

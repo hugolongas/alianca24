@@ -104,12 +104,17 @@ class ActivityService extends Service
         return $this->GetById($id);
     }
 
+    public function GetAttachmentsById($id){
+        $attachments = $this->MediaSerMediaService->GetAttachmentsByActivityId($id);
+        return $this->OkResult($attachments);
+    }
+
     public function AddAttachment($id, $attachmentType, UploadedFile $attachmentFile)
     {
         $width = 530;
         $height = 720;
         switch ($attachmentType) {
-            case "poster": {
+            case "activity": {
                     $width = 530;
                     $height = 720;
                     break;
