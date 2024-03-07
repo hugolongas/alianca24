@@ -41,7 +41,8 @@ class ActivityService extends Service
 
     public function GetById($id)
     {
-        $activity = Activity::find($id);
+        $activity = Activity::with('category')->find($id);    
+        $activity->slug();    
         return $this->OkResult($activity);
     }
 
@@ -82,37 +83,16 @@ class ActivityService extends Service
         return $this->OkResult($activity);
     }
 
-    public function Update($newActivity)
-    {
-        $date = str_replace('/', '-', $newActivity->date);
-        $date = date('Y-m-d', strtotime($date));
-        if ($newActivity->description == null) $newActivity->description = "";
-        if ($newActivity->buyUrl == null) $newActivity->buyUrl = "";
-
-        $activity = Activity::find($newActivity->id);
-        $activity->title = $newActivity->title;
-        $activity->resume = $newActivity->summary;
-        $activity->description = $newActivity->description;
-        $activity->category_id = $newActivity->categoryId;
-        $activity->date = $date;
-        $activity->time = $newActivity->time;
-        $activity->price = $newActivity->price;
-        $activity->buy_url = $newActivity->buyUrl;
-        $activity->save();
-
-        return $this->OkResult($activity);
-    }
-
-    public function Update1($id, $title, $summary, $description, $categoryId, $date, $time, $price, $buyUrl)
+    public function Update($id, $title, $summary, $description, $categoryId, $date, $time, $price, $buyUrl)
     {
         $date = str_replace('/', '-', $date);
         $date = date('Y-m-d', strtotime($date));
         if ($description == null) $description = "";
         if ($buyUrl == null) $buyUrl = "";
 
-        $activity = Activity::find($id);
+        $activity = Activity::find($id);   ;
         $activity->title = $title;
-        $activity->resume = $summary;
+        $activity->summary = $summary;
         $activity->description = $description;
         $activity->category_id = $categoryId;
         $activity->date = $date;
@@ -121,7 +101,7 @@ class ActivityService extends Service
         $activity->buy_url = $buyUrl;
         $activity->save();
 
-        return $this->OkResult($activity);
+        return $this->GetById($id);
     }
 
     public function AddAttachment($id, $attachmentType, UploadedFile $attachmentFile)
@@ -159,12 +139,15 @@ class ActivityService extends Service
             $this->MediaService->RemoveAttachment($attachment);
         }
         $activity->delete();
+        return $this->OkResult(true);
     }
 
     public function Publish($id, $status)
     {
         $activity = Activity::find($id);
         $activity->Published = $status;
+        $activity->save();
+        return $this->OkResult($activity);
     }
 
     /*Private Functions*/

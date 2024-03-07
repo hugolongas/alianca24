@@ -82,18 +82,12 @@ class ActivityController extends Controller
         return response()->json($result, 200);
     }
 
-    public function Update(Activity $activity)
-    {
-        $result = $this->ActivityService->Update($activity);
-        return response()->json($result, 200);
-    }
-
-    public function Update1(Request $request)
+    public function Update(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'id' => 'required',
             'title' => 'required',
-            'category' => 'required'
+            'category_id' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -102,7 +96,7 @@ class ActivityController extends Controller
 
         $id = $request->id;
         $title = $request->title;
-        $category = $request->category;
+        $category = $request->category_id;
         $summary = $request->summary;
         $description = $request->description;
         $date = $request->date;
@@ -110,14 +104,20 @@ class ActivityController extends Controller
         $price = $request->price;
         $buyUrl = $request->buyUrl;
 
-        $result = $this->ActivityService->Update1($id, $title, $summary, $description, $category, $date, $time, $price, $buyUrl);
+        $result = $this->ActivityService->Update($id, $title, $summary, $description, $category, $date, $time, $price, $buyUrl);
         return response()->json($result, 200);
     }
 
-    public function Publish($id, $status){
-        $result = $this->ActivityService->Publish($id, $status);
+    public function Publish($id){
+        $result = $this->ActivityService->Publish($id, true);
         return response()->json($result,200);
     }
+
+    public function unpublish($id){
+        $result = $this->ActivityService->Publish($id, false);
+        return response()->json($result,200);
+    }
+
     public function Delete($id){
         $result = $this->ActivityService->Delete($id);
         return response()->json($result, 200);

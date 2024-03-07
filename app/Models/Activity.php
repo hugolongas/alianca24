@@ -9,7 +9,7 @@ class Activity extends Model
 
     public function slug()
 	{
-        return config('app.url').'/'.$this->category()->name.'/'.$this->url;
+        return config('app.url').'/'.$this->category->lower_name.'/'.$this->url;
 	}
 
 	public function category()
