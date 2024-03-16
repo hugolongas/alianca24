@@ -65,14 +65,14 @@ class ActivityController extends Controller
             return response()->view('errors.404', [], 404);
     }
 
-    public function GetMediasById($id){
+    public function GetAttachmentsById($id){
         $result = $this->ActivityService->GetAttachmentsById($id);
         return response()->json($result,200);
     }
 
     public function AddAttachment(Request $request)
     {
-        $id = $request->articleId;
+        $id = $request->id;
         $attachment = $request->file('img');
         $attachmentType = $request->attachmentType;
 
@@ -80,10 +80,9 @@ class ActivityController extends Controller
         return response()->json($result, 200);
     }
 
-    public function RemoveAttachment(Request $request)
+    public function RemoveAttachment($id)
     {
-        $attachId = $request->attachId;
-        $result = $this->ActivityService->RemoveAttachment($attachId);
+        $result = $this->ActivityService->RemoveAttachment($id);
         return response()->json($result, 200);
     }
 

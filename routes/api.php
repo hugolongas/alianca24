@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CacheController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\MediaDefinitionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,12 +31,16 @@ Route::middleware('jwt.auth')->group(function () {
     Route::get('activity/all',[ActivityController::class,'all']);
     Route::post('activity/create',[ActivityController::class,'create']);
     Route::get('activity/get/{id}',[ActivityController::class,'get']);    
-    Route::get('activity/getMedias/{id}',[ActivityController::class,'GetMediasById']);   
+    Route::get('activity/attachments/{id}',[ActivityController::class,'GetAttachmentsById']);   
     Route::post('activity/publish/{id}',[ActivityController::class,'publish']);
     Route::post('activity/unpublish/{id}',[ActivityController::class,'unpublish']);
     Route::put('activity/update',[ActivityController::class,'update']);
     Route::delete('activity/delete/{id}',[ActivityController::class,'delete']);
+
+    Route::post('media/addatachment',[ActivityController::class,'AddAttachment']);
+    Route::delete('media/removeattachment/{id}',[ActivityController::class,'RemoveAttachment']);
     
+    Route::get('mediadefinitions/all',[MediaDefinitionController::class,'all']);
 
     Route::get('category/all',[CategoryController::class,'all']);
     Route::post('category/create',[CategoryController::class,'create']);

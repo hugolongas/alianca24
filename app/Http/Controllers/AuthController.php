@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\AuthService;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -74,8 +75,13 @@ class AuthController extends Controller
 
     public function logout()
     {
+        try{
         $this->AuthService->logout();
         return response()->json(['message' => 'Successfully logged out']);
+        }
+        catch(Exception $ex) {
+            return response()->json(['message' => $ex->getMessage()]);
+        }
     }
 
     public function user(){

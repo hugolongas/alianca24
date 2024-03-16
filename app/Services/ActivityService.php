@@ -105,34 +105,19 @@ class ActivityService extends Service
     }
 
     public function GetAttachmentsById($id){
-        $attachments = $this->MediaSerMediaService->GetAttachmentsByActivityId($id);
+        $attachments = $this->MediaService->GetAttachmentsByActivityId($id);
         return $this->OkResult($attachments);
     }
 
     public function AddAttachment($id, $attachmentType, UploadedFile $attachmentFile)
     {
-        $width = 530;
-        $height = 720;
-        switch ($attachmentType) {
-            case "activity": {
-                    $width = 530;
-                    $height = 720;
-                    break;
-                }
-            case "cover": {
-                    $width = 1280;
-                    $height = 720;
-                    break;
-                }
-        }
-
-        $attachment = $this->MediaService->CreateAttachment($id, $attachmentFile, $attachmentType, $width, $height);
+        $attachment = $this->MediaService->CreateAttachment($id, $attachmentFile, $attachmentType);
         return $this->OkResult($attachment);
     }
 
-    public function RemoveAttachment($attachId)
+    public function RemoveAttachment($id)
     {
-        $result = $this->MediaService->RemoveAttachmentById($attachId);
+        $result = $this->MediaService->RemoveAttachmentById($id);
         return $this->OkResult($result);
     }
 

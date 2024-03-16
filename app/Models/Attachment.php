@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Attachment extends Model
 {
     public function activity(){
-        $this->belongsTo(Activity::class);
+        return $this->belongsTo(Activity::class);
+    }
+
+    public function mediadefinition(){
+        return $this->belongsTo(MediaDefinition::class,'mediadefinition_id');
     }
 }
