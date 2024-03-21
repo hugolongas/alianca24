@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CacheController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CoverController;
 use App\Http\Controllers\MediaDefinitionController;
 
 /*
@@ -27,6 +28,11 @@ Route::post('regenerateCache', [CacheController::class, 'regenerateCache']);
 Route::middleware('jwt.auth')->group(function () {
     Route::post('refresh', [AuthController::class, 'refresh']);
     Route::get('user',[AuthController::class,'user']);
+
+    Route::get('covers',[CoverController::class,'all']);
+    Route::post('covers/create',[CoverController::class,'create']);
+    Route::get('covers/get/{id}',[CoverController::class,'get']);
+    Route::put('covers/update',[CoverController::class,'update']);
 
     Route::get('activity/all',[ActivityController::class,'all']);
     Route::post('activity/create',[ActivityController::class,'create']);

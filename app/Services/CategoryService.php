@@ -31,16 +31,7 @@ class CategoryService extends Service
         return $this->OkResult($category);
     }
 
-    public function Update(Category $category)
-    {
-        
-        $category->lower_name = $this->_SeoUrl($category->name);
-        $category->save();
-
-        return $this->OkResult($category);
-    }
-
-    public function Update1($id, $name)
+    public function Update($id, $name)
     {
         $category = Category::find($id);
         $category->name = $name;

@@ -3,16 +3,16 @@
 @section('title', "Ateneu l'Aliança")
 @section('content')
     <section id="destacats" class="container">
-        <div class="row">            
-            </div>
+        <div class="row">
+        </div>
     </section>
     <section id="activitats" class="container">
         <div class="row">
             <div class="activitats-list col-8">
                 <h2 class="title">Properes Activitats</h2>
                 @foreach ($activities as $activity)
-                {{$activity}}
-                    
+                    @component('components/activity-item', ['activity' => $activity])
+                    @endcomponent
                 @endforeach
             </div>
             <div class="activitats-calendar  col-4">

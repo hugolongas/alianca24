@@ -21,7 +21,7 @@ class CategoryController extends Controller
     public function All()
     {
         $categories = $this->CategoryService->All();
-        return response()->json($categories, 200);;
+        return response()->json($categories, 200);
     }
 
     public function Create(Request $request)

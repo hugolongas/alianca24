@@ -4,10 +4,7 @@ namespace App\Services;
 
 use App\Models\Activity;
 use App\Models\Category;
-use Illuminate\Http\UploadedFile;
 
-use Storage;
-use Image;
 use Carbon\Carbon;
 
 
@@ -31,14 +28,14 @@ class ActivityService extends Service
     public function GetAllByDate($date)
     {
         if ($date != '') {
-            $activities = Activity::orderBy('date', 'asc')->where('date', '=', $date)->where('published', true)->get();
-            return $this->OkResult($activities);
+            $activities = Activity::with('attachments')->orderBy('date', 'asc')->where('date', '=', $date)->where('published', true)->get();
+            return $activities;
         }
 
-        $activities = Activity::orderBy('date', 'asc')->where('date', '>=', Carbon::today())->where('published', true)->get();
-        return $this->OkResult($activities);
+        $activities = Activity::with('attachments')->orderBy('date', 'asc')->where('date', '>=', Carbon::today())->where('published', true)->get();
+        return $activities;
     }
-
+    
     public function GetById($id)
     {
         $activity = Activity::with('category')->find($id);    
@@ -48,8 +45,8 @@ class ActivityService extends Service
 
     public function GetByUrl($url)
     {
-        $activity = Activity::firstOrFail()->where('url', $url)->get();
-        return $this->OkResult($activity);
+        $activity = Activity::with('attachments')->where('url', $url)->first();
+        return $activity;
     }
 
     public function ByDate($year, $month)
@@ -62,14 +59,18 @@ class ActivityService extends Service
 
     public function GetActiveCount($count = 4)
     {
-        $activities = Activity::orderBy('date', 'asc')->where('date', '>=', Carbon::today())->where('published', true)->take($count)->get();
-        return $this->OkResult($activities);
+        $activities = Activity::with('attachments')->orderBy('date', 'asc')->where('date', '>=', Carbon::today())->where('published', true)->take($count)->get();       
+
+        return $activities;
     }
 
     public function Create($title, $category)
     {
         $activity = new Activity();
         $activity->title = $title;
+        $activity->category_id = $category;
+        $activity->summary = '';
+        $activity->description = '';
         $activity->category_id = $category;
         $activity->published = false;
         $activity->save();
@@ -109,9 +110,9 @@ class ActivityService extends Service
         return $this->OkResult($attachments);
     }
 
-    public function AddAttachment($id, $attachmentType, UploadedFile $attachmentFile)
+    public function AddAttachment($id, $media, $mediaDefinition, $cropInfo)
     {
-        $attachment = $this->MediaService->CreateAttachment($id, $attachmentFile, $attachmentType);
+        $attachment = $this->MediaService->CreateAttachment($id,  $media, $mediaDefinition, $cropInfo);
         return $this->OkResult($attachment);
     }
 

@@ -20,9 +20,7 @@ class ActivityController extends Controller
     public function All(){
         $activitites = $this->ActivityService->GetAll();
         return $activitites;
-    }
-
-    
+    }  
 
     public function calendarActivities($year, $month)
     {
@@ -54,7 +52,6 @@ class ActivityController extends Controller
         return response()->json($activity, 200);
     }
 
-
     public function GetByUrl($slug)
     {
         $activity = $this->ActivityService->GetByUrl($slug);
@@ -72,11 +69,12 @@ class ActivityController extends Controller
 
     public function AddAttachment(Request $request)
     {
-        $id = $request->id;
-        $attachment = $request->file('img');
-        $attachmentType = $request->attachmentType;
+        $id = $request->activityId;
+        $attachment = (object)$request->image;        
+        $mediaDefinition = (object)$request->mediaDefinition;
+        $cropInfo = (object)$request->cropInfo;
 
-        $result = $this->ActivityService->AddAttachment($id, $attachmentType, $attachment);
+        $result = $this->ActivityService->AddAttachment($id, $attachment, $mediaDefinition, $cropInfo);
         return response()->json($result, 200);
     }
 

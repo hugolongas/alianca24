@@ -16,16 +16,22 @@ class PageController extends Controller
 
     public function index()
     {
-        $activities = $this->ActivityService->GetActiveCount();
+        $activities = $this->ActivityService->GetActiveCount();     
         return view('home')->with('activities',$activities);
     }
     
-    public function activities($date = '')
+    public function activities(Request $request)    
     {
+        $date = $request->input('date');
         $activitites = $this->ActivityService->GetAllByDate($date);
         return view('activities')->with('activities', $activitites);
     }
 
+    public function Getactivity ($slug)
+    {
+        $activity = $this->ActivityService->GetByUrl($slug);
+        return view('activity')->with('activity', $activity);
+    }
 
     public function socis()
     {
