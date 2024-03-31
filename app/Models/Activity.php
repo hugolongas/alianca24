@@ -18,6 +18,6 @@ class Activity extends Model
 	}
 
     public function attachments(){
-       return $this->hasMany(Attachment::class)->with('mediadefinition');
+       return $this->BelongsToMany(Attachment::class)->with('mediadefinition');
     }
 }

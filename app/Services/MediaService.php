@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Models\Activity;
+use App\Models\Cover;
 use App\Models\Attachment;
 use App\Models\MediaDefinition;
 use Storage;
@@ -15,7 +17,7 @@ class MediaService extends Service
         $this->_MediaPath = 'media/';
     }
 
-    public function CreateAttachment($activityId,  $media, $mediaDefinition, $cropInfo)
+    public function CreateAttachment($media, $mediaDefinition, $cropInfo)
     {
         $attachment = new Attachment();
         $mediaFile = $media->data;
@@ -29,8 +31,7 @@ class MediaService extends Service
         $attachmentName = $hash . '.' . $extension;
         $filePath = $this->_MediaPath . $attachmentName;
 
-        Storage::disk('public')->put($filePath, $resizedImage);
-        $attachment->activity_id = $activityId;
+        Storage::disk('public')->put($filePath, $resizedImage);        
         $attachment->mediadefinition_id = $mediaDefinition->id;
         $attachment->name = $attachmentName;
         $attachment->extension = $extension;
@@ -56,12 +57,23 @@ class MediaService extends Service
         return true;
     }
 
-    public function GetAttachmentsByActivityId($activityId)
+    public function GetAttachmentsByActivityId($id)
     {
-        $attachmemts = Attachment::where("activity_id", $activityId)->get();
+        $attachmemts = Activity::find($id)->attachments;
 
-        $result = array();
-        $items = $attachmemts->Count();
+        $result = array();        
+        foreach ($attachmemts as $attach) {
+            $mediaDefinition = $attach->mediaDefinition;
+            if ($attach != null) $result[$mediaDefinition->type] = $attach;
+        }
+        return $result;
+    }
+
+    public function GetAttachmentsByCoverId($id)
+    {
+        $attachmemts = Cover::find($id)->attachments;
+
+        $result = array();        
         foreach ($attachmemts as $attach) {
             $mediaDefinition = $attach->mediaDefinition;
             if ($attach != null) $result[$mediaDefinition->type] = $attach;

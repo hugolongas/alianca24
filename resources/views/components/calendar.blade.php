@@ -1,10 +1,10 @@
 <div id="myCalendar" class="vanilla-calendar"></div>
 
 @section('css')
-    <link rel="stylesheet" href="/calendar/css/vanilla-calendar.min.css">
+    <link rel="stylesheet" href="/css/vanilla-calendar.min.css">
 @stop
 @push('scripts')
-    <script src="/calendar/js/vanilla-calendar.min.js"></script>
+    <script src="/js/vanilla-calendar.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 

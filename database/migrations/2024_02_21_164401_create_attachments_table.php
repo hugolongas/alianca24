@@ -15,7 +15,6 @@ class CreateAttachmentsTable extends Migration
     {
         Schema::create('attachments', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('activity_id');
             $table->foreignId('mediadefinition_id');
             $table->string('name');
             $table->string('extension');

@@ -29,57 +29,8 @@
                 </ul>
             </div>
         </div>
-
-        <div id="soci-info" class="container">
-            <h2 class="title">Tria el pla</h2>
-            <div class="soci-module-container">
-                <div class="soci-module">
-                    <h6 class="price">GRATIS</h6>
-                    <p class="type">Infantil</p>
-
-                    <div class="soci-module-info">
-                        <ul>
-                            <li>0-13 anys</li>
-                            <li> Soci sense quota</li>
-                            <li>Gaudeix dels avantatges</li>
-                        </ul>
-                    </div>
-                    <div class="align-center">
-                        <a href="{{ route('socis.inscripcio') }}" class="ali-btn">FER-ME SOCI INFANTIL</a>
-                    </div>
-                </div>
-                <div class="soci-module">
-                    <h6 class="price">60€</h6>
-                    <p class="type">Adult</p>
-
-                    <div class="soci-module-info">
-                        <ul>
-                            <li>14-69 anys</li>
-                            <li>Tots els drets de soci</li>
-                            <li>Gaudeix dels avantatges</li>
-                        </ul>
-                    </div>
-                    <div class="align-center">
-                        <a href="{{ route('socis.inscripcio') }}" class="ali-btn">FER-ME SOCI ADULT</a>
-                    </div>
-                </div>
-                <div class="soci-module">
-                    <h6 class="price">GRATIS</h6>
-                    <p class="type">Senior</p>
-
-                    <div class="soci-module-info">
-                        <ul>
-                            <li>+70 anys</li>
-                            <li>Soci sense quota</li>
-                            <li>Gaudeix dels avantatges</li>
-                        </ul>
-                    </div>
-                    <div class="align-center">
-                        <a href="{{ route('socis.inscripcio') }}" class="ali-btn">FER-ME SOCI SENIOR</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @component('components/socis-options')
+        @endcomponent        
     </section>
 @stop
 

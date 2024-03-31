@@ -24,6 +24,7 @@ Route::get('alianca',['uses'=>'PageController@page','as'=>'alianca']);
 
 Route::get('/contact',['uses'=>'PageController@contact','as'=>'contact']);
 
-Route::get('/socis',['uses'=>'PageController@socis','as'=>'socis']);
+Route::get('/socis',['uses'=>'PageController@socis','as'=>'partners']);
+Route::get('/socis/inscripcio',['uses'=>'PageController@socis','as'=>'partners.registration']);
 
 

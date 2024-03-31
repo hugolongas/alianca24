@@ -107,9 +107,11 @@ html body {
     position: -webkit-sticky;
     position: sticky;
     top: 80px;
+
     .vanilla-calendar-days_selecting {
         .vanilla-calendar-day__btn {
             cursor: default;
+
             &.calendar_activity {
                 background-color: #ffd1d1;
                 cursor: pointer;
@@ -119,6 +121,7 @@ html body {
 
     .vanilla-calendar-day__btn {
         cursor: default;
+
         &.calendar_activity {
             background-color: #ffd1d1;
             cursor: pointer;
@@ -156,7 +159,7 @@ html body {
     .vanilla-calendar-day__btn_selected.vanilla-calendar-day__btn_intermediate:hover {
         background-color: #bd1129;
         color: #fff
-    } 
+    }
 
 }
 
@@ -165,27 +168,34 @@ html body {
     position: relative;
     background: #fDfDfD;
     margin-bottom: 20px;
+    text-align: left;
+    color: #000;
 
     a {
         color: #000;
-        display: block;
-        text-align: left;
         text-decoration: none;
     }
 
     .activitat-poster {
-        display: table-cell;
+        @media @media-laptop {
+            display: table-cell;
+        }
 
         img {
-            max-width: 250px;
+            @media @media-laptop {
+                max-width: 258px;
+            }
         }
     }
 
     .activitat-info {
-        display: table-cell;
-        vertical-align: top;
-        padding-top: 10px;
-        padding-left: 20px;
+        @media @media-laptop {
+            display: table-cell;
+            vertical-align: top;
+            padding-top: 10px;
+            padding-left: 20px;
+        }
+
 
         .activitat-title {
             font-family: 'Montserrat';
@@ -202,11 +212,23 @@ html body {
         }
 
         .activitat-preu {
-            font-size: 15px;        }
+            font-size: 15px;
+        }
 
         .activitat-resum {
             font-size: 16px;
             margin-top: 15px;
+        }
+    }
+
+    .activitat-buy {
+
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+
+        a {
+            color: #fff;
         }
     }
 }

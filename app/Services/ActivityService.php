@@ -91,7 +91,7 @@ class ActivityService extends Service
         if ($description == null) $description = "";
         if ($buyUrl == null) $buyUrl = "";
 
-        $activity = Activity::find($id);   ;
+        $activity = Activity::find($id);
         $activity->title = $title;
         $activity->summary = $summary;
         $activity->description = $description;
@@ -112,13 +112,22 @@ class ActivityService extends Service
 
     public function AddAttachment($id, $media, $mediaDefinition, $cropInfo)
     {
-        $attachment = $this->MediaService->CreateAttachment($id,  $media, $mediaDefinition, $cropInfo);
+        $attachment = $this->MediaService->CreateAttachment( $media, $mediaDefinition, $cropInfo);
+
+        $activity = Activity::find($id);
+        $activity->attachments()->attach($attachment);
+        $activity->save();
+
         return $this->OkResult($attachment);
     }
 
-    public function RemoveAttachment($id)
+    public function RemoveAttachment($id, $attachId)
     {
-        $result = $this->MediaService->RemoveAttachmentById($id);
+        $activity = Activity::find($id);
+        $activity->attachments()->dettach($attachId);
+        $activity->save();
+
+        $result = $this->MediaService->RemoveAttachmentById($attachId);
         return $this->OkResult($result);
     }
 
@@ -137,8 +146,8 @@ class ActivityService extends Service
     {
         $activity = Activity::find($id);
         $activity->Published = $status;
-        $activity->save();
-        return $this->OkResult($activity);
+        $activity->save();        
+        return $this->GetById($id);
     }
 
     /*Private Functions*/

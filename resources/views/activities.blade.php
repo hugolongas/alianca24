@@ -4,6 +4,10 @@
 @section('content')
     <section id="agenda" class="container">
         <h1 class="title">Agenda</h1>
+        <div class="filter-activitats">
+            Filtre:
+            <
+        </div>
         <div class="row">
             <div class="activitats-list col-12 col-md-8">
                 @foreach ($activities as $activity)

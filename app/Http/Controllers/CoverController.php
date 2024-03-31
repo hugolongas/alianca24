@@ -51,17 +51,16 @@ class CoverController extends Controller
         }
 
         $id = $request->id;
-        if ($request->useActivity) {
-            $activityId = $request->activityid;
-            $result = $this->CoverService->UpdateWithActivity($id, $activityId);
-            return response()->json($result, 200);
-        }
-
         $title = $request->title;
         $url = $request->url;
 
         $result = $this->CoverService->Update($id, $title, $url);
         return response()->json($result, 200);
+    }
+
+    public function GetAttachmentsById($id){
+        $result = $this->CoverService->GetAttachmentsById($id);
+        return response()->json($result,200);
     }
 
     public function Delete($id){

@@ -4,20 +4,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\ActivityService;
+use App\Services\CoverService;
 
 class PageController extends Controller
 {
     protected $ActivityService;
-
-    public function __construct(ActivityService $activityService)
+    protected $CoverService;
+    public function __construct(ActivityService $activityService, CoverService $coverService)
     {
         $this->ActivityService = $activityService;
+        $this->CoverService = $coverService;
     }
 
     public function index()
     {
         $activities = $this->ActivityService->GetActiveCount();     
-        return view('home')->with('activities',$activities);
+        $covers = $this->CoverService->GetCovers();
+        return view('home')->with('activities',$activities)->with("covers",$covers);
     }
     
     public function activities(Request $request)    

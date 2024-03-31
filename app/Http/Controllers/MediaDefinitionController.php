@@ -19,6 +19,18 @@ class MediaDefinitionController extends Controller
     public function All()
     {
         $categories = $this->MediaService->GetMediaDefinitions();
-        return response()->json($categories, 200);;
+        return response()->json($categories, 200);
+    }
+
+    public function GetForActivity()
+    {
+        $categories = $this->MediaService->GetMediaDefinitionsForActivities();
+        return response()->json($categories, 200);
+    }
+
+    public function GetForCover()
+    {
+        $categories = $this->MediaService->GetMediaDefinitionsForCover();
+        return response()->json($categories, 200);
     }
 }

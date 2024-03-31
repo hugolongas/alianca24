@@ -2,26 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Services\CategoryService;
+use App\Models\Parner;
+use App\Services\ParnerService;
 use Illuminate\Http\Request;
 
-use Validator;
-
-class CategoryController extends Controller
+class ParnerController extends Controller
 {
-    protected $CategoryService;
+    
+    protected $ParnerService;
 
-    public function __construct(CategoryService $categoryService)
+    public function __construct(ParnerService $parnerService)
     {
-        $this->CategoryService = $categoryService;
+        $this->ParnerService = $parnerService;
     }
 
     
     public function All()
     {
-        $categories = $this->CategoryService->All();
-        return response()->json($categories, 200);
+        $parners = $this->ParnerService->All();
+        return response()->json($parners, 200);
     }
 
     public function Create(Request $request)
@@ -36,13 +35,13 @@ class CategoryController extends Controller
 
         $name = $request->name;
 
-        $result = $this->CategoryService->Create($name);
+        $result = $this->ParnerService->Create($name);
         return ($result);
     }
 
     public function Get($id)
     {
-        $category = $this->CategoryService->GetById($id);
+        $category = $this->ParnerService->GetById($id);
         return response()->json($category, 200);
     }
 
@@ -59,13 +58,15 @@ class CategoryController extends Controller
 
         $id = $request->id;
         $name = $request->name;
+        $price = $request->price;
+        $info = $request->info;
 
-        $result = $this->CategoryService->Update($id, $name);
+        $result = $this->ParnerService->Update($id, $name, $price, $info);
         return response()->json($result, 200);
     }
 
     public function Delete($id){
-        $result = $this->CategoryService->Delete($id);
+        $result = $this->ParnerService->Delete($id);
         return response()->json($result, 200);
     }
 }

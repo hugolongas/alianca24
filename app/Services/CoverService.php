@@ -2,24 +2,33 @@
 
 namespace App\Services;
 
-use App\Models\Activity;
 use App\Models\Cover;
 
 use App\Services\MediaService;
-use App\Services\ActivityService;
 
 class CoverService extends Service
 {
-    protected $ActivityService;
+    private $MediaService;
 
-    public function __construct(ActivityService $activityService)
+    public function __construct(MediaService $mediaService)
     {
-        $this->ActivityService = $activityService;
+        $this->MediaService = $mediaService;
     }
 
     public function GetCovers()
     {
-        $covers = Cover::all();
+        $covers = Cover::with('attachments')->get()->sortBy("position");
+        $pair = $covers->count() % 2;
+
+        foreach ($covers as $i => $cover) {
+            if ($i == 0) {
+                $cover->SetCss(12);
+            } else if ($pair == 0 && $i == 1) {
+                $cover->SetCss(12);
+            } else {
+                $cover->SetCss(6);
+            }
+        }
         return $covers;
     }
 
@@ -40,7 +49,6 @@ class CoverService extends Service
         $count = Cover::count();
         $cover = new Cover();
         $cover->title = '';
-        $cover->cover_type = "Cover";
         $cover->position = $count + 1;
         $cover->save();
 
@@ -51,23 +59,26 @@ class CoverService extends Service
     {
         $cover = Cover::find($id);
         $cover->title = $title;
-        $cover->title = $url;
+        $cover->url = $url;
         $cover->save();
+        return $this->OkResult($cover);
     }
 
-    public function UpdateWithActivity($id, $activityId)
+    public function AddAttachment($id, $media, $mediaDefinition, $cropInfo)
     {
-        if ($activityId == null) return $this->FailResponse("Activitat no existeix");
-
-        $activity = Activity::with('attachments')->find($activityId);
+        $attachment = $this->MediaService->CreateAttachment($media, $mediaDefinition, $cropInfo);
 
         $cover = Cover::find($id);
-        $cover->title = $activity->title;
-        $cover->title = $activity->url;
-        $cover->img_url = $activity->attachments->where('mediadefinition.type', 'cover')->first()->url;
+        $cover->attachments()->attach($attachment);
         $cover->save();
 
-        return $this->OkResult($cover);
+        return $this->OkResult($attachment);
+    }
+
+    public function RemoveAttachment($id)
+    {
+        $result = $this->MediaService->RemoveAttachmentById($id);
+        return $this->OkResult($result);
     }
 
     public function Delete($id)
@@ -75,6 +86,12 @@ class CoverService extends Service
         $category = Cover::find($id);
         $category->delete();
         return $this->OkResult(true);
+    }
+
+    public function GetAttachmentsById($id)
+    {
+        $attachments = $this->MediaService->GetAttachmentsByCoverId($id);
+        return $this->OkResult($attachments);
     }
 
 

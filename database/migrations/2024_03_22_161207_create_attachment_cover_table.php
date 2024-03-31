@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMediaDefinitionsTable extends Migration
+class CreateAttachmentCoverTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateMediaDefinitionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('media_definitions', function (Blueprint $table) {
+        Schema::create('attachment_cover', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('type');
-            $table->string('used');
-            $table->integer('width');
-            $table->integer('height');
+            $table->unsignedInteger('attachment_id');
+            $table->unsignedInteger('cover_id');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateMediaDefinitionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('media_definitions');
+        Schema::dropIfExists('attachment_cover');
     }
 }

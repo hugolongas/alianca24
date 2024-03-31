@@ -67,23 +67,6 @@ class ActivityController extends Controller
         return response()->json($result,200);
     }
 
-    public function AddAttachment(Request $request)
-    {
-        $id = $request->activityId;
-        $attachment = (object)$request->image;        
-        $mediaDefinition = (object)$request->mediaDefinition;
-        $cropInfo = (object)$request->cropInfo;
-
-        $result = $this->ActivityService->AddAttachment($id, $attachment, $mediaDefinition, $cropInfo);
-        return response()->json($result, 200);
-    }
-
-    public function RemoveAttachment($id)
-    {
-        $result = $this->ActivityService->RemoveAttachment($id);
-        return response()->json($result, 200);
-    }
-
     public function Update(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -104,7 +87,7 @@ class ActivityController extends Controller
         $date = $request->date;
         $time = $request->time;
         $price = $request->price;
-        $buyUrl = $request->buyUrl;
+        $buyUrl = $request->buy_url;
 
         $result = $this->ActivityService->Update($id, $title, $summary, $description, $category, $date, $time, $price, $buyUrl);
         return response()->json($result, 200);
