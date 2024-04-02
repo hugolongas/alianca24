@@ -10,6 +10,16 @@ class ParnerService extends Service
     {
     }
 
+    public function GetParners()
+    {
+        $parners = Parner::all();
+        return $parners;
+    }
+    public function GetParner($id){
+        $parner = Parner::find($id);
+        return$parner;
+    }
+
     public function All(){
         $parners = Parner::all();
         return $this->OkResult($parners);

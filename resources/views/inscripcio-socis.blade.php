@@ -4,7 +4,7 @@
 @section('content')
     <section id="ateneu" class="container page">
         <h1 class="title">
-            Inscripció
+            Inscripció {{$parner->name}}
         </h1> 
     </section>
 @stop

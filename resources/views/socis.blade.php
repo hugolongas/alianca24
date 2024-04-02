@@ -29,7 +29,7 @@
                 </ul>
             </div>
         </div>
-        @component('components/socis-options')
+        @component('components/socis-options', ['parners' => $parners])
         @endcomponent        
     </section>
 @stop

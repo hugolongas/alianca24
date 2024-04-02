@@ -4,13 +4,13 @@
         @foreach ($parners as $parner)
             <div class="soci-module">
                 <h6 class="price">{{$parner->price}}</h6>
-                <p class="type">{{$parner->price}}</p>
+                <p class="type">{{$parner->name}}</p>
 
                 <div class="soci-module-info">
                     {!!$parner->info!!}
                 </div>
                 <div class="align-center">
-                    <a href="{{ route('partners.registration') }}" class="ali-btn">FER-ME SOCI</a>
+                    <a href="{{ route('parners.registration',['id'=>$parner->id]) }}" class="ali-btn">FER-ME SOCI</a>
                 </div>
             </div>
         @endforeach

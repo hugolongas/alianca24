@@ -6,6 +6,8 @@ use App\Models\Parner;
 use App\Services\ParnerService;
 use Illuminate\Http\Request;
 
+use Validator;
+
 class ParnerController extends Controller
 {
     

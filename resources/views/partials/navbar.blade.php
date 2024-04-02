@@ -15,8 +15,8 @@
                         href="{{ route('activities') }}">ACTIVITATS</a>
                 </li>
                 <li class="nav-item menu">
-                    <a class="nav-link {{ Request::routeIs('socis') ? 'active' : '' }}"
-                        href="{{ route('socis') }}">SOCIS</a>
+                    <a class="nav-link {{ Request::routeIs('parners') ? 'active' : '' }}"
+                        href="{{ route('parners') }}">SOCIS</a>
                 </li>
                 <li class="nav-item menu">
                     <a class="nav-link {{ Request::routeIs('contact') ? 'active' : '' }}"
