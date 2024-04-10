@@ -9,6 +9,8 @@ use App\Http\Controllers\CoverController;
 use App\Http\Controllers\MediaDefinitionController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\ParnerController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\RoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +27,7 @@ Route::post('login', [AuthController::class, 'login']);
 Route::post('logout', [AuthController::class, 'logout']);
 Route::post('register', [AuthController::class, 'register']);
 
-Route::post('regenerateCache', [CacheController::class, 'regenerateCache']);
+Route::get('regenerateCache', [CacheController::class, 'regenerateCache']);
 
 Route::middleware('jwt.auth')->group(function () {
     Route::post('refresh', [AuthController::class, 'refresh']);
@@ -62,4 +64,16 @@ Route::middleware('jwt.auth')->group(function () {
     Route::get('parners/get/{id}', [ParnerController::class, 'get']);
     Route::put('parners/update', [ParnerController::class, 'update']);
     Route::delete('parners/delete/{id}', [ParnerController::class, 'delete']);
+
+    Route::get('users/all', [UserController::class, 'all']);
+    Route::post('users/create', [UserController::class, 'create']);
+    Route::get('users/get/{id}', [UserController::class, 'get']);
+    Route::put('users/update', [UserController::class, 'update']);
+    Route::delete('users/delete/{id}', [UserController::class, 'delete']);
+
+    Route::get('roles/all', [RoleController::class, 'all']);
+    Route::post('roles/create', [RoleController::class, 'create']);
+    Route::get('roles/get/{id}', [RoleController::class, 'get']);
+    Route::put('roles/update', [RoleController::class, 'update']);
+    Route::delete('roles/delete/{id}', [RoleController::class, 'delete']);
 });

@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cover extends Model
 {
-    private $_cssStyle = '12';
+    private $_cssStyle = 'col-sm-12';
     public function SetCss($css)
     {
-        $this->_cssStyle = $css;
+        if ($css != 12)
+            $this->_cssStyle = $this->_cssStyle . " col-md-" . $css;
     }
     public function cssStyle()
     {

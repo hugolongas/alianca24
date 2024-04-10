@@ -76,7 +76,7 @@ class ActivityService extends Service
         $activity->save();
 
 
-        $url =$this->_SeoUrl($activity->title). "_" . $activity->id;
+        $url =$this->SeoUrl($activity->title). "_" . $activity->id;
         $activity->url = $url;
 
         $activity->save();
@@ -149,19 +149,4 @@ class ActivityService extends Service
         $activity->save();        
         return $this->GetById($id);
     }
-
-    /*Private Functions*/
-    private function _SeoUrl($string)
-    {
-        //Lower case everything
-        $finalString = strtolower($string);
-        //Make alphanumeric (removes all other characters)
-        $finalString = preg_replace("/[^a-z0-9_\s-]/", "", $finalString);
-        //Clean up multiple dashes or whitespaces
-        $finalString = preg_replace("/[\s-]+/", " ", $finalString);
-        //Convert whitespaces and underscore to dash
-        $finalString = preg_replace("/[\s_]/", "-", $finalString);
-        return $finalString;
-    }
-    /*End Private Functions*/
 }

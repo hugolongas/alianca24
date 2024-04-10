@@ -222,10 +222,14 @@ html body {
     }
 
     .activitat-buy {
+        position: relative;
 
-        position: absolute;
-        bottom: 5px;
-        right: 5px;
+        @media @media-laptop {
+            position: absolute;
+
+            bottom: 5px;
+            right: 5px;
+        }
 
         a {
             color: #fff;

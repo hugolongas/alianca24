@@ -50,7 +50,7 @@
 }
 #main {
   font-family: 'Lato', sans-serif;
-  font-size: 15px/1.4em;
+  font-size: 10.71428571px;
   color: #000000;
   position: relative;
   min-height: 100vh;
@@ -205,9 +205,14 @@ html body footer.footer {
   margin-top: 15px;
 }
 .activitat-item .activitat-buy {
-  position: absolute;
-  bottom: 5px;
-  right: 5px;
+  position: relative;
+}
+@media only screen and (min-width: 992px) {
+  .activitat-item .activitat-buy {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+  }
 }
 .activitat-item .activitat-buy a {
   color: #fff;
@@ -323,14 +328,12 @@ html body footer.footer {
   margin-bottom: 40px;
 }
 #main.home #socis #soci-info .soci-module-container .soci-module {
-  display: inline-block;
   background: #f3f3f3;
   color: #747474;
-  width: 25%;
   text-align: center;
   padding: 10px;
   font-family: 'Montserrat';
-  margin: 0px 28px;
+  margin: 10px;
 }
 #main.home #socis #soci-info .soci-module-container .price {
   font-size: 35px;
@@ -452,14 +455,11 @@ html body footer.footer {
   margin-bottom: 40px;
 }
 #main.socis #soci-info .soci-module-container .soci-module {
-  display: inline-block;
   background: #f3f3f3;
   color: #747474;
-  width: 28%;
   text-align: center;
   padding: 10px;
   font-family: 'Montserrat';
-  margin: 0px 28px;
 }
 #main.socis #soci-info .soci-module-container .price {
   font-size: 35px;

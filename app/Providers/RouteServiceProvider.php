@@ -73,7 +73,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapApiRoutes()
     {
-        Route::domain($this->_baseDomain('api'))
+        Route::domain($this->_baseDomain(config('app.api_prefix')))
             ->prefix('api')
             ->middleware('api')
             ->namespace($this->namespace)

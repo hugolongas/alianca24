@@ -29,6 +29,7 @@ return [
     'env' => env('APP_ENV', 'production'),
 
     'base_domain' => env('APP_BASE_DOMAIN','alianca24.local'),
+    'api_prefix' => env('APP_API_PREFIX','api'),
 
     /*
     |--------------------------------------------------------------------------

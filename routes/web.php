@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+
+use App\Http\Controllers\CacheController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,5 +29,8 @@ Route::get('/contact',['uses'=>'PageController@contact','as'=>'contact']);
 
 Route::get('/socis',['uses'=>'PageController@socis','as'=>'parners']);
 Route::get('/socis/inscripcio/{id}',['uses'=>'PageController@inscripcio','as'=>'parners.registration']);
+
+
+Route::post('regenerateCache', [CacheController::class, 'regenerateCache']);
 
 

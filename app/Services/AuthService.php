@@ -13,7 +13,7 @@ class AuthService extends Service
     {
     }
 
-    public function register($name, $email, $password)
+    public function register($name, $email, $password, $roleId)
     {
         $user = new User([
             'name' => $name,
@@ -23,6 +23,12 @@ class AuthService extends Service
 
         $user->email_verified_at = now();
         $user->save();
+        $user->roles()->attach($roleId);
+        $response = [
+            'result' => true,
+            'data' => 'Usuari registrat correctament'
+        ];
+        return $this->OkResult($response);
     }
 
     public function login($email, $password, $remember)

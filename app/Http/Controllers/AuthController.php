@@ -36,7 +36,7 @@ class AuthController extends Controller
         $email = $request->input('email');
         $password = $request->input('password');
 
-        $this->AuthService->register($name, $email, $password);
+        $this->AuthService->register($name, $email, $password,1);
         $response = [
             'result' => true,
             'data' => 'Usuari registrat correctament'

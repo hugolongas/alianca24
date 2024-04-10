@@ -24,7 +24,7 @@ class CategoryService extends Service
     {
         $category = new Category();
         $category->name = $name;
-        $category->lower_name = $this->_SeoUrl($name);
+        $category->lower_name = $this->SeoUrl($name);
 
         $category->save();
 
@@ -35,7 +35,7 @@ class CategoryService extends Service
     {
         $category = Category::find($id);
         $category->name = $name;
-        $category->lower_name = $this->_SeoUrl($name);
+        $category->lower_name = $this->SeoUrl($name);
         $category->save();
 
         return $this->OkResult($category);
@@ -47,19 +47,4 @@ class CategoryService extends Service
         $category->delete();
         return $this->OkResult(true);
     }
-
-    /*Private Functions*/
-    private function _SeoUrl($string)
-    {
-        //Lower case everything
-        $finalString = strtolower($string);
-        //Make alphanumeric (removes all other characters)
-        $finalString = preg_replace("/[^a-z0-9_\s-]/", "", $finalString);
-        //Clean up multiple dashes or whitespaces
-        $finalString = preg_replace("/[\s-]+/", " ", $finalString);
-        //Convert whitespaces and underscore to dash
-        $finalString = preg_replace("/[\s_]/", "-", $finalString);
-        return $finalString;
-    }
-    /*End Private Functions*/
 }
